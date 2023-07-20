@@ -1,3 +1,5 @@
+const { default: axios } = require("axios");
+
 const getAllItems = async () => {
     try {
         let response = {
@@ -10,11 +12,17 @@ const getAllItems = async () => {
             "internalMsg": "",
             "enableAlert": "No",
             "displayMsgBy": "shortMsg",
-            "data": [{ version: "V2" }]
+            "data": null
+        }
+        let json = await axios.get("https://jsonplaceholder.typicode.com/posts").catch((error) => {
+            throw error
+        });
+        if (json?.data) {
+            return { ...response, data: json.data.slice(5,10) }
         }
         return response
     } catch (error) {
-
+        throw error
     } finally {
         //Close connection
     }
