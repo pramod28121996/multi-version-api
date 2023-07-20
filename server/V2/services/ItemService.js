@@ -1,13 +1,13 @@
 const { default: axios } = require("axios");
 
-const getAllItems = async () => {
+const getAllPosts = async () => {
     try {
         let response = {
             "code": 0,
             "msgCode": 200,
             "msgType": "Operation-Successful",
             "msgLang": "EN",
-            "shortMsg": "Items Fetch Successfully",
+            "shortMsg": "posts Fetch Successfully",
             "longMsg": "",
             "internalMsg": "",
             "enableAlert": "No",
@@ -18,7 +18,7 @@ const getAllItems = async () => {
             throw error
         });
         if (json?.data) {
-            return { ...response, data: json.data.slice(5, 10) }
+            return { ...response, data: json.data.slice(0, 10) }
         }
         return response
     } catch (error) {
@@ -27,14 +27,14 @@ const getAllItems = async () => {
         //Close connection
     }
 }
-const getItemById = async (id) => {
+const getPostById = async (id) => {
     try {
         let response = {
             "code": 0,
             "msgCode": 200,
             "msgType": "Operation-Successful",
             "msgLang": "EN",
-            "shortMsg": "Item Fetch Successfully",
+            "shortMsg": "Post Fetch Successfully",
             "longMsg": "",
             "internalMsg": "",
             "enableAlert": "No",
@@ -55,7 +55,36 @@ const getItemById = async (id) => {
     }
 }
 
+const getPostCommentById = async (id) => {
+    try {
+        let response = {
+            "code": 0,
+            "msgCode": 200,
+            "msgType": "Operation-Successful",
+            "msgLang": "EN",
+            "shortMsg": "Post Comments Fetch Successfully",
+            "longMsg": "",
+            "internalMsg": "",
+            "enableAlert": "No",
+            "displayMsgBy": "shortMsg",
+            "data": null
+        }
+        let json = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}/comments`).catch((error) => {
+            throw error
+        });
+        if (json?.data) {
+            return { ...response, data: json?.data }
+        }
+        return response
+    } catch (error) {
+        throw error
+    } finally {
+        //Close connection
+    }
+}
+
 module.exports = {
-    getAllItems,
-    getItemById
+    getAllPosts,
+    getPostById,
+    getPostCommentById
 }
