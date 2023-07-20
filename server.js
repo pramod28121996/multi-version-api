@@ -20,5 +20,7 @@ const PORT = process.env.PORT || 8080;
 
 //Load all routes
 app.use('/',require('./server/routes/routes'))
+app.use('/api/v1',require('./server/routes/V1/V1ItemRoutes'))
+app.use('/api/v2',require('./server/routes/V2/V2ItemRoutes'))
 
 app.listen(3000, () => console.log(`server running at ${PORT}`));
