@@ -9,4 +9,10 @@ const { urlCons } = require("../../../Libs/utils");
  */
 router.get(urlCons.API_GET_ALL_ITEMS, V2ItemController.getAllItems);
 
+/**
+ * @description Get a item by passing id
+ * @member GET /api/V2/items/:id
+ */
+router.get(urlCons.API_GET_ITEM_BY_ID, V2ItemController.getItemById);
+
 module.exports = router;

@@ -18,7 +18,34 @@ const getAllItems = async () => {
             throw error
         });
         if (json?.data) {
-            return { ...response, data: json.data.slice(5,10) }
+            return { ...response, data: json.data.slice(5, 10) }
+        }
+        return response
+    } catch (error) {
+        throw error
+    } finally {
+        //Close connection
+    }
+}
+const getItemById = async (id) => {
+    try {
+        let response = {
+            "code": 0,
+            "msgCode": 200,
+            "msgType": "Operation-Successful",
+            "msgLang": "EN",
+            "shortMsg": "Item Fetch Successfully",
+            "longMsg": "",
+            "internalMsg": "",
+            "enableAlert": "No",
+            "displayMsgBy": "shortMsg",
+            "data": null
+        }
+        let json = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`).catch((error) => {
+            throw error
+        });
+        if (json?.data) {
+            return { ...response, data: json?.data }
         }
         return response
     } catch (error) {
@@ -29,5 +56,6 @@ const getAllItems = async () => {
 }
 
 module.exports = {
-    getAllItems
+    getAllItems,
+    getItemById
 }
