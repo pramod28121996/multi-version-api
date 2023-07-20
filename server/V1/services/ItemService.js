@@ -1,13 +1,13 @@
 const { default: axios } = require("axios");
 
-const getAllItems = async () => {
+const getAllPosts = async () => {
     try {
         let response = {
             "code": 0,
             "msgCode": 200,
             "msgType": "Operation-Successful",
             "msgLang": "EN",
-            "shortMsg": "Items Fetch Successfully",
+            "shortMsg": "posts Fetch Successfully",
             "longMsg": "",
             "internalMsg": "",
             "enableAlert": "No",
@@ -56,6 +56,6 @@ const getItemById = async (id) => {
 }
 
 module.exports = {
-    getAllItems,
+    getAllPosts,
     getItemById
 }
