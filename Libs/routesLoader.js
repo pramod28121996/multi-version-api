@@ -1,13 +1,12 @@
-const { glob, Glob } = require('glob')
-//const s= required('server\V1\routes\ItemRoutes.js')
+const { glob, } = require('glob')
 
-module.exports = function (version) {  
+module.exports = async function (version) {
   return new Promise((resolve, reject) => {
-    const routes = [];    
-    glob(`server/${version}/routes/*.js`, { ignore: '**/index.js' },)
-      .then((files) => {        
-        files.forEach(file => {                      
-          routes.push(require("../"+file));          
+    const routes = [];
+    glob(`server/${version.toUpperCase()}/routes/*.js`, { ignore: '**/index.js' },)
+      .then((files) => {
+        files.forEach(file => {
+          routes.push(require("../" + file));
         });
         return resolve(routes);
       });

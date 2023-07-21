@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const ItemController = require('../controller/ItemController')
 const { urlCons } = require('../../../Libs/utils')
-const auth = require("../../middleware/auth");
+const auth = require("../../Middleware/auth");
 
 /**
  * @description Get all posts
